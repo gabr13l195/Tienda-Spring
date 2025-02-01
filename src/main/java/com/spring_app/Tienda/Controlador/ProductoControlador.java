@@ -24,14 +24,14 @@ public class ProductoControlador {
     public String mostrarProductos(Model model){ //Model de ui framework spring
         List<Producto> productos = productoServicio.listarProductos();
         model.addAttribute("productos", productos);
-        return  "//";
+        return  "Producto/listaProductos";
     }
 
     //CREAR
     @GetMapping("/formulario")
     public String formularioProducto(Model model){
         model.addAttribute("producto", new Producto());
-        return "/formulario";
+        return "Producto/formulario";
     }
     @PostMapping("/guardar")
     public String crearProducto(Producto producto){
@@ -40,18 +40,18 @@ public class ProductoControlador {
     }
 
     //ACTUALIZAR
-    @GetMapping("/editar{id}")
+    @GetMapping("/editar/{id}")
     public String editarProducto(@PathVariable Long id, Model model){
         Optional<Producto> producto = productoServicio.buscarProducto(id);
         model.addAttribute("producto", producto);
-        return "//";
+        return "Producto/formulario";
     }
 
     //ELIMINAR
-    @GetMapping("/eliminar{id}")
+    @GetMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable Long id){
         productoServicio.eliminarProducto(id);
-        return "redirect/producto"; //PUSO LIBROS EN EL VIDEO
+        return "redirect:/alumnos"; //PUSO LIBROS EN EL VIDEO
     }
 
 }

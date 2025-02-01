@@ -3,7 +3,7 @@ package com.spring_app.Tienda.Entidad;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
+//Este objeto se transformo en una tabla
 @Data
 @Entity
 @Table(name="tabla-producto")
@@ -22,4 +22,36 @@ public class Producto {
     private Double precio;
 
     private int stock;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 }

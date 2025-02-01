@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-5">
+
+<h2>Lista de Productos</h2>
+
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="producto: ${productos}">
+          <td th:text="${producto.id}"></td>
+          <td th:text="${producto.nombre}"></td>
+          <td th:text="${producto.precio}"></td>
+          <td th:text="${producto.stock}"></td>
+          <td>
+            <a th:href="@{/editar/} + ${producto.id}" class="btn">Actualizar</a>
+            <a th:href="@{/eliminar/} + ${producto.id}" class="btn">Eliminar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/formulario}" class="btn">Nuevo Producto</a>
+  </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.js"></script>
+</body>
+</html>
