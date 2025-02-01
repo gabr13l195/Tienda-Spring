@@ -1,10 +1,8 @@
 package com.spring_app.Tienda.Controlador;
 
 import com.spring_app.Tienda.Entidad.Producto;
-import com.spring_app.Tienda.Repositorio.ProductoRepositorio;
 import com.spring_app.Tienda.Servicio.ProductoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +24,6 @@ public class ProductoControlador {
     public String mostrarProductos(Model model){ //Model de ui framework spring
         List<Producto> productos = productoServicio.listarProductos();
         model.addAttribute("productos", productos);
-
         return  "//";
     }
 
@@ -54,7 +51,7 @@ public class ProductoControlador {
     @GetMapping("/eliminar{id}")
     public String eliminarProducto(@PathVariable Long id){
         productoServicio.eliminarProducto(id);
-        return "redirect/producto" //PUSO LIBROS EN EL VIDEO
+        return "redirect/producto"; //PUSO LIBROS EN EL VIDEO
     }
 
 }
