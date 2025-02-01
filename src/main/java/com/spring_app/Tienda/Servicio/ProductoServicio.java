@@ -17,7 +17,7 @@ public class ProductoServicio {
     ProductoRepositorio productoRepositorio;
 
     //Producto que devuele una lista
-    public List<Producto> listarProducto (){
+    public List<Producto> listarProductos (){
         return productoRepositorio.findAll();
     }
 
