@@ -51,6 +51,10 @@ public class ProductoControlador {
     }
 
     //ELIMINAR
-    @
+    @GetMapping("/eliminar{id}")
+    public String eliminarProducto(@PathVariable Long id){
+        productoServicio.eliminarProducto(id);
+        return "redirect/producto" //PUSO LIBROS EN EL VIDEO
+    }
 
 }
