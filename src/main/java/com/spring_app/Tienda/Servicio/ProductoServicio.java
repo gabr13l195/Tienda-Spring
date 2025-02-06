@@ -10,6 +10,7 @@ import java.util.Optional;
 
 //
 @Service
+
 public class ProductoServicio {
 
     //Inyeccion de dependecias
@@ -28,29 +29,12 @@ public class ProductoServicio {
     }
 
     //Metodo que no devuelve nada
-    public void guardarProducto(Producto producto) {
-        if (producto.getId() != null) { // Si tiene ID, es una actualización
-            Optional<Producto> productoExistente = productoRepositorio.findById(producto.getId());
-            if (productoExistente.isPresent()) {
-                Producto actualizado = productoExistente.get();
-                actualizado.setNombre(producto.getNombre());
-                actualizado.setPrecio(producto.getPrecio());
-                actualizado.setStock(producto.getStock());
-                productoRepositorio.save(actualizado);
-            } else {
-                throw new RuntimeException("El producto con ID " + producto.getId() + " no existe.");
-            }
-        } else { // Si no tiene ID, es un nuevo registro
-            productoRepositorio.save(producto);
-        }
+    public void guardarProducto(Producto producto){
+        productoRepositorio.save(producto);
     }
 
     //Metodo para eliminar producto
-    public void eliminarProducto(Long id) {
-        if (productoRepositorio.existsById(id)) {
-            productoRepositorio.deleteById(id);
-        } else {
-            throw new RuntimeException("El producto con ID " + id + " no existe.");
-        }
+    public void eliminarProducto(Long id){
+        productoRepositorio.deleteById(id);
     }
 }

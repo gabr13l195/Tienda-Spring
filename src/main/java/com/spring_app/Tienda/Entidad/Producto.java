@@ -23,6 +23,7 @@ public class Producto {
 
     private int stock;
 
+
     public Long getId() {
         return id;
     }
