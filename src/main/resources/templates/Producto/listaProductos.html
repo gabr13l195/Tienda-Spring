@@ -6,40 +6,53 @@
   <title>Productos</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.css" rel="stylesheet">
-  <link type="text/css" th:ref>
+  <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body class="bg-gray-100 p-5">
 
-<h2>Lista de Productos</h2>
+<div class="container mx-auto">
+  <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Lista de Productos</h2>
 
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Codigo</th>
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th>Stock</th>
-          <th>Opciones</th>
-        </tr>
+  <div class="overflow-x-auto">
+    <form th:action="@{productos}" method="get" class="">
+      <div>
+        <input type="text" name="buscarProducto" placeholder="Buscar productos" th:value="${buscarProducto}">
+        <button class="" type="submit">Buscar</button>
+      </div>
+    </form>
+    <table class="w-full text-sm text-left text-gray-500 border border-gray-300 rounded-lg shadow-md">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+      <tr>
+        <th scope="col" class="px-6 py-3 border-b">Código</th>
+        <th scope="col" class="px-6 py-3 border-b">Nombre</th>
+        <th scope="col" class="px-6 py-3 border-b">Precio</th>
+        <th scope="col" class="px-6 py-3 border-b">Stock</th>
+        <th scope="col" class="px-6 py-3 border-b text-center">Opciones</th>
+      </tr>
       </thead>
       <tbody>
-        <tr th:each="producto: ${productos}">
-          <td th:text="${producto.id}"></td>
-          <td th:text="${producto.nombre}"></td>
-          <td th:text="${producto.precio}"></td>
-          <td th:text="${producto.stock}"></td>
-          <td>
-            <a th:href="@{/editar/} + ${producto.id}" class="btn-actualizar">Actualizar</a>
-            <a th:href="@{/eliminar/} + ${producto.id}" class="btn-eliminar">Eliminar</a>
-          </td>
-        </tr>
+      <tr th:each="producto: ${productos}" class="bg-white border-b hover:bg-gray-100">
+        <td class="px-6 py-4 font-medium text-gray-900" th:text="${producto.id}"></td>
+        <td class="px-6 py-4" th:text="${producto.nombre}"></td>
+        <td class="px-6 py-4" th:text="${producto.precio}"></td>
+        <td class="px-6 py-4" th:text="${producto.stock}"></td>
+        <td class="px-6 py-4 flex justify-center space-x-2">
+          <a th:href="@{/editar/} + ${producto.id}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Actualizar</a>
+          <a th:href="@{/eliminar/} + ${producto.id}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Eliminar</a>
+        </td>
+      </tr>
       </tbody>
     </table>
-    <a th:href="@{/formulario}" class="btn-guardar">Nuevo Producto</a>
   </div>
 
+  <div class="mt-4 flex justify-center">
+    <a th:href="@{/formulario}" class="bg-blue-500 text-white px-5 py-3 rounded-lg shadow-md hover:bg-blue-600 transition">
+      Nuevo Producto
+    </a>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.js"></script>
 </body>
 </html>
+

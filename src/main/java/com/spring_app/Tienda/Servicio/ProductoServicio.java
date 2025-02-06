@@ -22,6 +22,15 @@ public class ProductoServicio {
         return productoRepositorio.findAll();
     }
 
+    //Metodo para buscar producto
+    public List<Producto> buscarProductoNombre(String buscarProducto){
+        if (buscarProducto==null || buscarProducto.isEmpty()){
+            return productoRepositorio.findAll();
+        }
+        else {
+            return productoRepositorio.findByNombreContainingIgnoreCase(buscarProducto);
+        }
+    }
     //Optional es un contenedor de producto
     //Si encuentra el producto con el ID genera algo si no un null
     public Optional<Producto> buscarProducto(Long id){

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +22,9 @@ public class ProductoControlador {
 
     //LEER
     @GetMapping("/productos")
-    public String mostrarProductos(Model model){ //Model de ui framework spring
-        List<Producto> productos = productoServicio.listarProductos();
+    public String mostrarProductos(@RequestParam (name = "buscarProducto", required = false, defaultValue = "") String buscarProducto, Model model){ //Model de ui framework spring
+        List<Producto> productos = productoServicio.buscarProductoNombre(buscarProducto);
+        model.addAttribute("buscarProducto", buscarProducto);
         model.addAttribute("productos", productos);
         return  "Producto/listaProductos";
     }
@@ -51,7 +53,7 @@ public class ProductoControlador {
     @GetMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable Long id){
         productoServicio.eliminarProducto(id);
-        return "redirect:/alumnos"; //PUSO LIBROS EN EL VIDEO
+        return "redirect:/productos"; //PUSO LIBROS EN EL VIDEO
     }
 
 }
